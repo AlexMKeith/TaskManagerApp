@@ -60,8 +60,8 @@ public class AddTaskFragment {
 
         }
     }
-    private void addTaskToDatabase(final String name, final String description){
-        Task task = new Task(name, description, new Date());
+    private void addTaskToDatabase(final String name, final String description, final String dueDate){
+        Task task = new Task(name, description, dueDate);
         taskDatabase.taskDao().addTask(task);
         activityCallback.addClicked();
 

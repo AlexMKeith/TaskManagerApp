@@ -48,21 +48,21 @@ public class MainActivity extends AppCompatActivity {
         addTaskFragment.attachParent(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, addTaskFragment).commit();
     }
-    @Override
+//    @Override
     public void addClicked() {
         getSupportFragmentManager().beginTransaction().remove(addTaskFragment).commit();
-        taskAdapter.updateList(taskDatabase.taskDao().getTasks());
+        taskAdapter.updateList(taskDatabase.taskDao().getTask());
     }
-    @Override
+//    @Override
     public Context getContext(){
         return getApplicationContext();
 
     }
-    @Override
+//    @Override
     public void rowClicked(Task task) {
 
     }
-    @Override
+//    @Override
     public void rowLongClicked(final Task task) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete Task?").setMessage("Are you sure you would like to delete this task?").setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
