@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void setUpRecyclerView() {
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        taskAdapter = new TaskAdapter(taskDatabase.taskDao().getTasks(),this);
+        taskAdapter = new TaskAdapter(taskDatabase.taskDao().getTask(),this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(taskAdapter);
         taskAdapter.notifyDataSetChanged();

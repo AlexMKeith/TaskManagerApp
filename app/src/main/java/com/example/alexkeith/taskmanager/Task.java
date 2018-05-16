@@ -1,24 +1,26 @@
 package com.example.alexkeith.taskmanager;
 
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 
-public class Task {
+public @Entity class Task {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String taskName;
     private String taskDescription;
     private boolean isCompletedOut;
-    private Date dueDate;
+    private String dueDate;
 
 
-    public Task(String taskName, String taskDescription, Date dueDate) {
+    public Task(String taskName, String taskDescription, String dueDate) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.dueDate = dueDate;
     }
+
     public int getId() {
         return id;
     }
@@ -39,23 +41,23 @@ public class Task {
         return taskDescription;
     }
 
-    public void setGameGenre(String gameGenre) {
-        this.gameGenre = gameGenre;
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
     }
 
-    public boolean isCheckedOut() {
-        return isCheckedOut;
+    public boolean isCompletedOut() {
+        return isCompletedOut;
     }
 
-    public void setCheckedOut(boolean checkedOut) {
-        isCheckedOut = checkedOut;
+    public void setCompletedOut(boolean completedOut) {
+        isCompletedOut = completedOut;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDueDate() {
+        return dueDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 }
