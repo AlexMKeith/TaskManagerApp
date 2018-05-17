@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import java.util.List;
@@ -15,10 +19,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AddTaskFragment.ActivityCallback, TaskAdapter.AdapterCallback{
 
     @BindView(R.id.tasks_recycler_view)
     protected RecyclerView recyclerView;
+    @BindView(R.id.add_task_button)
+    protected Button addTaskButton;
+
 
     private TaskDatabase taskDatabase;
     private TaskAdapter taskAdapter;
@@ -44,9 +51,12 @@ public class MainActivity extends AppCompatActivity {
     }
     @OnClick(R.id.add_task_button)
     protected void addGameButtonClicked(){
-        addTaskFragment = AddTaskFragment.newInstance();
-        addTaskFragment.attachParent(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, addTaskFragment).commit();
+            addTaskFragment = AddTaskFragment.newInstance();
+            addTaskFragment.attachParent(this);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, addTaskFragment).commit();
+        if (addTaskFragment.isVisible()) {
+            addTaskButton.setVisibility(View.GONE);
+        }
     }
 //    @Override
     public void addClicked() {

@@ -64,6 +64,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         public void bind(Task task) {
             taskName.setText(task.getTaskName());
             taskDescription.setText(adapterCallback.getContext().getString(R.string.task_description, task.getTaskDescription()));
+            taskDueDate.setText(task.getDueDate());
 
             if (task.isCompletedOut()) {
                 rowLayout.setBackgroundResource(R.color.red);
