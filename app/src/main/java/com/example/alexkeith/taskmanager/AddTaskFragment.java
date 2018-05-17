@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ public class AddTaskFragment extends Fragment{
     protected EditText taskDescription;
     @BindView(R.id.add_task_due_date_edit_text)
     protected EditText taskDueDate;
+//    @BindView(R.id.add_task_button)
+//    protected Button addTaskButton;
 
     @Nullable
     @Override
@@ -57,7 +60,8 @@ public class AddTaskFragment extends Fragment{
             String description = taskDescription.getText().toString();
             String dueDate = taskDueDate.getText().toString();
             addTaskToDatabase(name, description, dueDate);
-            Toast.makeText(getActivity(), "Game Added!!!",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Task Added!!!",Toast.LENGTH_LONG).show();
+//            addTaskButton.setVisibility(View.VISIBLE);
 
         }
     }

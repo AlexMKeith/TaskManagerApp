@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements AddTaskFragment.ActivityCallback, TaskAdapter.AdapterCallback{
+public class MainActivity extends AppCompatActivity implements AddTaskFragment.ActivityCallback, EditTaskFragment.ActivityCallback, TaskAdapter.AdapterCallback{
 
     @BindView(R.id.tasks_recycler_view)
     protected RecyclerView recyclerView;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements AddTaskFragment.A
     private List<Task> taskList;
     private AddTaskFragment addTaskFragment;
     private LinearLayoutManager linearLayoutManager;
+    private EditTaskFragment editTaskFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +55,7 @@ public class MainActivity extends AppCompatActivity implements AddTaskFragment.A
             addTaskFragment = AddTaskFragment.newInstance();
             addTaskFragment.attachParent(this);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, addTaskFragment).commit();
-        if (addTaskFragment.isVisible()) {
             addTaskButton.setVisibility(View.GONE);
-        }
     }
 //    @Override
     public void addClicked() {
@@ -70,7 +69,10 @@ public class MainActivity extends AppCompatActivity implements AddTaskFragment.A
     }
 //    @Override
     public void rowClicked(Task task) {
-
+        editTaskFragment = EditTaskFragment.newInstance();
+        editTaskFragment.attachParent(this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, editTaskFragment).commit();
+        addTaskButton.setVisibility(View.GONE);
     }
 //    @Override
     public void rowLongClicked(final Task task) {
