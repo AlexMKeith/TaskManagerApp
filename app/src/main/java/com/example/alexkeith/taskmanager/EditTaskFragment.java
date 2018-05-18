@@ -17,6 +17,7 @@ import butterknife.OnClick;
         public class EditTaskFragment extends Fragment {
         private com.example.alexkeith.taskmanager.AddTaskFragment.ActivityCallback activityCallback;
         private TaskDatabase taskDatabase;
+        private AddTaskFragment addTaskFragment;
 
 
         @BindView(R.id.new_name_edit_text)
@@ -44,6 +45,9 @@ import butterknife.OnClick;
         public void onStart() {
             super.onStart();
             taskDatabase = ((TaskApplication) getActivity().getApplicationContext()).getDatabase();
+//            newTaskName.setHint(addTaskFragment.taskName.getText().toString());
+//            newTaskDescription.setHint(addTaskFragment.taskDescription.getText().toString());
+//            newTaskDueDate.setHint(addTaskFragment.taskDueDate.getText().toString());
         }
         @OnClick(R.id.edit_task_button)
         protected void editButtonClicked(){

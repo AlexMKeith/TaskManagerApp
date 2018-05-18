@@ -20,6 +20,7 @@ import butterknife.OnClick;
 public class AddTaskFragment extends Fragment{
     private ActivityCallback activityCallback;
     private TaskDatabase taskDatabase;
+    private MainActivity mainActivity;
 
 
     @BindView(R.id.add_task_name_edit_text)
@@ -61,7 +62,7 @@ public class AddTaskFragment extends Fragment{
             String dueDate = taskDueDate.getText().toString();
             addTaskToDatabase(name, description, dueDate);
             Toast.makeText(getActivity(), "Task Added!!!",Toast.LENGTH_LONG).show();
-//            addTaskButton.setVisibility(View.VISIBLE);
+            mainActivity.addTaskButton.setVisibility(View.VISIBLE);
 
         }
     }

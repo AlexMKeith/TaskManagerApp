@@ -67,9 +67,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             taskDueDate.setText(task.getDueDate());
 
             if (task.isCompletedOut()) {
-                rowLayout.setBackgroundResource(R.color.red);
-            } else {
                 rowLayout.setBackgroundResource(R.color.green);
+            } else {
+                rowLayout.setBackgroundResource(R.color.red);
             }
         }
 
