@@ -56,6 +56,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         protected TextView taskDescription;
         @BindView(R.id.item_date)
         protected TextView taskDueDate;
+        @BindView(R.id.date_completed)
+        protected TextView dateCompleted;
+        @BindView(R.id.date_created)
+        protected TextView dateCreated;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -66,7 +70,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             taskDescription.setText(adapterCallback.getContext().getString(R.string.task_description, task.getTaskDescription()));
             taskDueDate.setText(task.getDueDate());
 
-            if (task.isCompletedOut()) {
+            if (task.isCompleted() == true) {
                 rowLayout.setBackgroundResource(R.color.green);
             } else {
                 rowLayout.setBackgroundResource(R.color.red);

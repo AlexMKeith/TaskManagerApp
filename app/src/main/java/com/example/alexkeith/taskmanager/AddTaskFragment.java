@@ -32,6 +32,8 @@ public class AddTaskFragment extends Fragment{
 //    @BindView(R.id.add_task_button)
 //    protected Button addTaskButton;
 
+    private Date dateCreated;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,14 +62,14 @@ public class AddTaskFragment extends Fragment{
             String name = taskName.getText().toString();
             String description = taskDescription.getText().toString();
             String dueDate = taskDueDate.getText().toString();
-            addTaskToDatabase(name, description, dueDate);
+            Date created = dateCreated;
+            addTaskToDatabase(name, description, dueDate, created);
             Toast.makeText(getActivity(), "Task Added!!!",Toast.LENGTH_LONG).show();
-            mainActivity.addTaskButton.setVisibility(View.VISIBLE);
-
+//            mainActivity.addTaskButton.setVisibility(View.VISIBLE);
         }
     }
-    private void addTaskToDatabase(final String name, final String description, final String dueDate){
-        Task task = new Task(name, description, dueDate);
+    private void addTaskToDatabase(final String name, final String description, final String dueDate, final Date created){
+        Task task = new Task(name, description, dueDate, created);
         taskDatabase.taskDao().addTask(task);
         activityCallback.addClicked();
 

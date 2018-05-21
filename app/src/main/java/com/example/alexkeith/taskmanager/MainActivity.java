@@ -2,6 +2,7 @@ package com.example.alexkeith.taskmanager;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity implements AddTaskFragment.A
     protected RecyclerView recyclerView;
     @BindView(R.id.add_task_button)
     protected Button addTaskButton;
+//    @BindView(R.id.item_row_layout)
+//    protected ConstraintLayout itemRowLayout;
+//    @BindView(R.id.edit_task_button)
+//    protected Button editTaskButton;
 
 
     private TaskDatabase taskDatabase;
@@ -61,7 +66,18 @@ public class MainActivity extends AppCompatActivity implements AddTaskFragment.A
     public void addClicked() {
         getSupportFragmentManager().beginTransaction().remove(addTaskFragment).commit();
         taskAdapter.updateList(taskDatabase.taskDao().getTask());
+        addTaskButton.setVisibility(View.VISIBLE);
     }
+    public void editClicked() {
+        getSupportFragmentManager().beginTransaction().remove(editTaskFragment).commit();
+        taskAdapter.updateList(taskDatabase.taskDao().getTask());
+        addTaskButton.setVisibility(View.VISIBLE);
+    }
+//    public void editClickedUncompleted() {
+//        getSupportFragmentManager().beginTransaction().remove(editTaskFragment).commit();
+//        taskAdapter2.updateList(taskDatabase2.taskDao().getTask());
+//        addTaskButton.setVisibility(View.VISIBLE);
+//    }
 //    @Override
     public Context getContext(){
         return getApplicationContext();

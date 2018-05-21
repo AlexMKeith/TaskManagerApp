@@ -3,12 +3,18 @@ package com.example.alexkeith.taskmanager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +32,14 @@ import butterknife.OnClick;
         protected EditText newTaskDescription;
         @BindView(R.id.new_due_date_edit_text)
         protected EditText newTaskDueDate;
+        @BindView(R.id.edit_task_button)
+        protected Button editTaskButton;
+        @BindView(R.id.completed_switch)
+        protected Switch completedSwitch;
+        @BindView(R.id.item_row_layout)
+        protected ConstraintLayout itemRowLayout;
+        protected Boolean isCompleted;
+        protected Date dateCreated;
 
         @Nullable
         @Override
@@ -45,9 +59,9 @@ import butterknife.OnClick;
         public void onStart() {
             super.onStart();
             taskDatabase = ((TaskApplication) getActivity().getApplicationContext()).getDatabase();
-//            newTaskName.setHint(addTaskFragment.taskName.getText().toString());
-//            newTaskDescription.setHint(addTaskFragment.taskDescription.getText().toString());
-//            newTaskDueDate.setHint(addTaskFragment.taskDueDate.getText().toString());
+            newTaskName.setHint(addTaskFragment.taskName.getText().toString());
+            newTaskDescription.setHint(addTaskFragment.taskDescription.getText().toString());
+            newTaskDueDate.setHint(addTaskFragment.taskDueDate.getText().toString());
         }
         @OnClick(R.id.edit_task_button)
         protected void editButtonClicked(){
@@ -55,13 +69,24 @@ import butterknife.OnClick;
                 String name = newTaskName.getText().toString();
                 String description = newTaskDescription.getText().toString();
                 String dueDate = newTaskDueDate.getText().toString();
-                editTaskInDatabase(name, description, dueDate);
-                Toast.makeText(getActivity(), "Task Added!!!",Toast.LENGTH_LONG).show();
+                Date createdDate = dateCreated;
+                editTaskInDatabase(name, description, dueDate, createdDate);
+                Toast.makeText(getActivity(), "Task Edited!!!",Toast.LENGTH_LONG).show();
+                editTaskButton.setVisibility(View.GONE);
 
 
         }
-        private void editTaskInDatabase(final String name, final String description, final String dueDate){
-            Task task = new Task(name, description, dueDate);
+        @OnClick(R.id.completed_switch)
+        protected void isComplete() {
+            if (isCompleted = false) {
+                isCompleted = true;
+            } else {
+                isCompleted = false;
+            }
+        }
+
+        private void editTaskInDatabase(final String name, final String description, final String dueDate, final Date dateCreated){
+            Task task = new Task(name, description, dueDate, dateCreated);
             taskDatabase.taskDao().addTask(task);
             activityCallback.addClicked();
 

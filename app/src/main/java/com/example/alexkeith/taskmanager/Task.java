@@ -11,14 +11,17 @@ public @Entity class Task {
 
     private String taskName;
     private String taskDescription;
-    private boolean isCompletedOut;
+    private boolean isCompleted;
     private String dueDate;
+    private Date dateCreated;
 
 
-    public Task(String taskName, String taskDescription, String dueDate) {
+    public Task(String taskName, String taskDescription, String dueDate, Date dateCreated) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.dueDate = dueDate;
+        this.dateCreated = dateCreated;
+
     }
 
     public int getId() {
@@ -45,12 +48,12 @@ public @Entity class Task {
         this.taskDescription = taskDescription;
     }
 
-    public boolean isCompletedOut() {
-        return isCompletedOut;
+    public boolean isCompleted() {
+        return isCompleted;
     }
 
-    public void setCompletedOut(boolean completedOut) {
-        isCompletedOut = completedOut;
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
     }
 
     public String getDueDate() {
@@ -59,5 +62,13 @@ public @Entity class Task {
 
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }
